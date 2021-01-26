@@ -13,30 +13,35 @@ public class Customer {
 	@GeneratedValue
 	private int cid;
 	private String username;
+	private String password;
+	private String email;
 	private String firstName;
 	private String lastName;
 	private String city;
 	private String state;
 	private String contactNumber;
 	private String role;
+	private boolean active;
 
 	public Customer() {
-		
+
 	}
 
-	public Customer(int cid, String username, String firstName, String lastName, String city, String state,
-			String contactNumber, String role) {
+	public Customer(int cid, String username, String password, String email, String firstName, String lastName,
+			String city, String state, String contactNumber, String role, boolean active) {
 		super();
 		this.cid = cid;
 		this.username = username;
+		this.password = password;
+		this.email = email;
 		this.firstName = firstName;
 		this.lastName = lastName;
 		this.city = city;
 		this.state = state;
 		this.contactNumber = contactNumber;
 		this.role = role;
+		this.active = active;
 	}
-
 
 	public int getCid() {
 		return cid;
@@ -52,6 +57,22 @@ public class Customer {
 
 	public void setUsername(String username) {
 		this.username = username;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getFirstName() {
@@ -102,11 +123,19 @@ public class Customer {
 		this.role = role;
 	}
 
+	public boolean isActive() {
+		return active;
+	}
+
+	public void setActive(boolean active) {
+		this.active = active;
+	}
+
 	@Override
 	public String toString() {
-		return "Customer [cid=" + cid + ", username=" + username + ", firstName=" + firstName + ", lastName=" + lastName
-				+ ", city=" + city + ", state=" + state + ", contactNumber=" + contactNumber + ", role=" + role + "]";
+		return "Customer [cid=" + cid + ", username=" + username + ", password=" + password + ", email=" + email
+				+ ", firstName=" + firstName + ", lastName=" + lastName + ", city=" + city + ", state=" + state
+				+ ", contactNumber=" + contactNumber + ", role=" + role + ", active=" + active + "]";
 	}
-		
 
 }
