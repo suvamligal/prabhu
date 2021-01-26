@@ -20,7 +20,7 @@ public class Customer {
 	private String city;
 	private String state;
 	private String contactNumber;
-	private String role;
+	private String roles;
 	private boolean active;
 
 	public Customer() {
@@ -28,7 +28,7 @@ public class Customer {
 	}
 
 	public Customer(int cid, String username, String password, String email, String firstName, String lastName,
-			String city, String state, String contactNumber, String role, boolean active) {
+			String city, String state, String contactNumber, String roles, boolean active) {
 		super();
 		this.cid = cid;
 		this.username = username;
@@ -39,7 +39,7 @@ public class Customer {
 		this.city = city;
 		this.state = state;
 		this.contactNumber = contactNumber;
-		this.role = role;
+		this.roles = roles;
 		this.active = active;
 	}
 
@@ -115,12 +115,12 @@ public class Customer {
 		this.contactNumber = contactNumber;
 	}
 
-	public String getRole() {
-		return role;
+	public String getRoles() {
+		return roles;
 	}
 
-	public void setRole(String role) {
-		this.role = role;
+	public void setRoles(String roles) {
+		this.roles = roles;
 	}
 
 	public boolean isActive() {
@@ -135,7 +135,7 @@ public class Customer {
 	public String toString() {
 		return "Customer [cid=" + cid + ", username=" + username + ", password=" + password + ", email=" + email
 				+ ", firstName=" + firstName + ", lastName=" + lastName + ", city=" + city + ", state=" + state
-				+ ", contactNumber=" + contactNumber + ", role=" + role + ", active=" + active + "]";
+				+ ", contactNumber=" + contactNumber + ", roles=" + roles + ", active=" + active + "]";
 	}
 
 }

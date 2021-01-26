@@ -1,5 +1,6 @@
 package com.prabhubank.model;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
@@ -14,20 +15,22 @@ public class CustomUserDetails implements UserDetails {
 	private String username;
 	private String password;
 	private boolean active;
+	
 	private List<GrantedAuthority> authorities;
 
+	//user can have multiple roles. so spliting the roles.
 	public CustomUserDetails(Customer customer) {
 		this.username = customer.getUsername();
 		this.password = customer.getPassword();
 		this.active = customer.isActive();
-		this.authorities = Arrays.stream(customer.getRole().split(",")).map(SimpleGrantedAuthority::new)
-				.collect(Collectors.toList());
+		this.authorities = Arrays.asList(new SimpleGrantedAuthority("ROLE_" + customer.getRoles()));
 
 	}
 
 	@Override
 	public Collection<? extends GrantedAuthority> getAuthorities() {
 		return authorities;
+		 //return Arrays.asList(new SimpleGrantedAuthority("ROLE_USER"));
 	}
 
 	@Override
@@ -37,7 +40,6 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public String getUsername() {
-
 		return username;
 	}
 
@@ -58,7 +60,7 @@ public class CustomUserDetails implements UserDetails {
 
 	@Override
 	public boolean isEnabled() {
-		return active;
+		return true;
 	}
 
 }

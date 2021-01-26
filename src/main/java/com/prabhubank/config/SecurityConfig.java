@@ -20,24 +20,16 @@ import com.prabhubank.service.CustomUserDetailsService;
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
-//	@Autowired
-//	private CustomUserDetailsService customUserDetailsService;
-//	
+	@Autowired
+	private CustomUserDetailsService customUserDetailsService;
+	
 //	@Autowired
 //	private PasswordEncoder bCryptPasswordEncoder;
 
 	
 	@Override
 	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		auth.inMemoryAuthentication()
-		.withUser("mike")
-		.password("bloom")
-		.roles("USER")
-		.and()
-		.withUser("juan")
-		.password("code")
-		.roles("ADMIN");
-		//auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
+		auth.userDetailsService(customUserDetailsService);
 	}
 	
 	@Override
@@ -49,6 +41,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 			.and().formLogin();
 		}
 	
+	@Bean
+	public PasswordEncoder getPasswordEncoder() {
+		return NoOpPasswordEncoder.getInstance();
+	}
+	
+//	@Override
+//	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+//		auth.inMemoryAuthentication()
+//		.withUser("mike")
+//		.password("bloom")
+//		.roles("USER")
+//		.and()
+//		.withUser("juan")
+//		.password("code")
+//		.roles("ADMIN");
+//		auth.userDetailsService(customUserDetailsService).passwordEncoder(bCryptPasswordEncoder);
+//	}
+
+	
 //	@Override
 //    protected void configure(HttpSecurity http) throws Exception {
 //        http.authorizeRequests()
@@ -58,17 +69,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 //                .antMatchers("/").permitAll()
 //                .and().formLogin();
 //    }
-	
 
 //	@Bean
 //	public BCryptPasswordEncoder bCryptPasswordEncoder() {
 //		return new BCryptPasswordEncoder();
 //	}
-	
-	@Bean
-	public PasswordEncoder getPasswordEncoder() {
-		return NoOpPasswordEncoder.getInstance();
-	}
-	
 
 }
